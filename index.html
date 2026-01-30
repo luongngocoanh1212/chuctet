@@ -3,24 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Lời chúc Tết 2026</title>
-
 <style>
-body{
+body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin-top: 80px;
     background-color: #fff8e7;
     color: #333;
 }
-h2{
+h2 {
     color: #d72631;
 }
-input,button{
+input, button {
     padding: 10px;
     font-size: 16px;
     margin-top: 10px;
 }
-#result{
+#result {
     margin-top: 30px;
     white-space: pre-line;
     font-size: 18px;
@@ -29,18 +28,68 @@ input,button{
 }
 </style>
 </head>
-
 <body>
 
 <h2>Sở Khoa học và Công nghệ chúc mừng Xuân Bính Ngọ 2026</h2>
 
 <input id="name" placeholder="Nhập tên..." />
 <br>
-<button onclick="taoTho()">Nhận lời chúc</button>
+<button id="btnChuc">Nhận lời chúc</button>
 
 <div id="result"></div>
 
 <script>
-// Bỏ dấu tiếng Việt
-function boDau(s){
-    return s.normalize("NFD").replace(/[\u0300-\u036]()
+// Hàm bỏ dấu tiếng Việt
+function boDau(str){
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+}
+
+// Danh sách vần và cụm từ chuẩn
+const VAN = {
+    ao:["ngọt ngào","dạt dào","thắm vào"],
+    inh:["lung linh","yên bình","bình minh"],
+    ang:["dịu dàng","an khang","huy hoàng"],
+    ai:["miệt mài","lâu dài","tương lai"],
+    ieu:["mỹ miều","thuận chiều","sớm chiều"],
+    uy:["như ý","phú quý","an nguy"],
+    an:["bình an","hân hoan","ngập tràn"],
+    am:["ấm êm","êm đềm","dịu mềm"],
+    on:["vẹn tròn","sắt son","vuông tròn"]
+};
+
+// Hàm lấy vần cuối
+function layVan(ten){
+    if(!ten) return "an";
+    let tenKhongDau = boDau(ten.toLowerCase());
+    let keys = Object.keys(VAN).sort((a,b)=>b.length - a.length);
+    for(let k of keys){
+        if(tenKhongDau.endsWith(k)) return k;
+    }
+    return "an";
+}
+
+// Hàm tạo lời chúc
+function taoLoiChuc(){
+    let ten = document.getElementById("name").value.trim();
+    if(!ten){
+        alert("Vui lòng nhập tên để nhận lời chúc!");
+        return;
+    }
+
+    let van = layVan(ten);
+    let cumTu = VAN[van];
+
+    let loiChuc = `Xuân về hoa nở ${cumTu[0]},
+Năm mới an vui đến với ${ten}
+Gia đình hạnh phúc ${cumTu[1]},
+Công danh rực rỡ ${cumTu[2]}.`;
+
+    document.getElementById("result").innerText = loiChuc;
+}
+
+// Gắn sự kiện cho nút
+document.getElementById("btnChuc").addEventListener("click", taoLoiChuc);
+
+</script>
+</body>
+</html>
