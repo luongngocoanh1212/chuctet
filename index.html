@@ -33,30 +33,28 @@ font-size:18px
 <div id="result"></div>
 
 <script>
+
 function layVan(ten){
+
 ten = ten.toLowerCase();
-let van = ten.slice(-2);
-return van;
+
+let vanList = [
+"ang","anh","inh","ung","ong","ien","ieng","uong","uong",
+"ai","ao","au","ay","am","an","at","ac",
+"em","en","et",
+"im","in",
+"oa","oi","om","on",
+"ua","ui","um","un",
+"y","a","e","i","o","u"
+];
+
+for(let v of vanList){
+ if(ten.endsWith(v)) return v;
+}
+
+return ten.slice(-2);
 }
 
 function taoTho(){
-let ten = document.getElementById("name").value.trim();
-if(!ten) return;
 
-let van = layVan(ten);
-
-let dong1 = `Xuân về hoa nở lung l${van}`;
-let dong2 = `Năm mới an vui đến với ${ten}`;
-let dong3 = `Gia đình hạnh phúc yên l${van}`;
-let dong4 = `Công danh rực rỡ bình m${van}`;
-
-document.getElementById("result").innerText =
-`${dong1}
-${dong2}
-${dong3}
-${dong4}`;
-}
-</script>
-
-</body>
-</html>
+let ten = document.getEleme
