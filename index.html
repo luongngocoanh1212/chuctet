@@ -7,17 +7,22 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    margin-top: 80px;
+    margin-top: 50px;
     background-color: #fff8e7;
     color: #333;
 }
 h2 {
     color: #d72631;
+    font-size: 26px;
+    margin-bottom: 20px;
 }
 input, button {
     padding: 10px;
     font-size: 16px;
     margin-top: 10px;
+}
+button {
+    cursor: pointer;
 }
 #result {
     margin-top: 30px;
@@ -39,33 +44,29 @@ input, button {
 <div id="result"></div>
 
 <script>
-// Hàm bỏ dấu tiếng Việt
-function boDau(str){
-    return str.normalize("NFD").replace(/[\u0300-\u036f]/g,"");
-}
+// Danh sách mẫu thơ (thêm nhiều mẫu nếu muốn)
+const TEMPLATES = [
+`Xuân về hoa nở lung linh,
+Năm mới an vui đến với {ten}
+Gia đình hạnh phúc yên bình,
+Công danh rực rỡ bình minh.`,
+`Xuân về trời đất rộn ràng,
+Năm mới an vui đến với {ten}
+Gia đình hạnh phúc ấm áp,
+Công danh thăng tiến muôn vàn.`,
+`Hoa mai vàng nở khắp nơi,
+Năm mới an vui đến với {ten}
+Gia đình hạnh phúc trọn vẹn,
+Mọi điều như ý, may mắn luôn.`,
+`Xuân sang rộn ràng pháo đỏ,
+Năm mới an vui đến với {ten}
+Gia đình đoàn viên sum vầy,
+Hạnh phúc ngập tràn muôn nhà.`
+];
 
-// Danh sách vần và cụm từ chuẩn
-const VAN = {
-    ao:["ngọt ngào","dạt dào","thắm vào"],
-    inh:["lung linh","yên bình","bình minh"],
-    ang:["dịu dàng","an khang","huy hoàng"],
-    ai:["miệt mài","lâu dài","tương lai"],
-    ieu:["mỹ miều","thuận chiều","sớm chiều"],
-    uy:["như ý","phú quý","an nguy"],
-    an:["bình an","hân hoan","ngập tràn"],
-    am:["ấm êm","êm đềm","dịu mềm"],
-    on:["vẹn tròn","sắt son","vuông tròn"]
-};
-
-// Hàm lấy vần cuối
-function layVan(ten){
-    if(!ten) return "an";
-    let tenKhongDau = boDau(ten.toLowerCase());
-    let keys = Object.keys(VAN).sort((a,b)=>b.length - a.length);
-    for(let k of keys){
-        if(tenKhongDau.endsWith(k)) return k;
-    }
-    return "an";
+// Hàm chọn random mẫu thơ
+function randomTemplate(){
+    return TEMPLATES[Math.floor(Math.random() * TEMPLATES.length)];
 }
 
 // Hàm tạo lời chúc
@@ -76,20 +77,14 @@ function taoLoiChuc(){
         return;
     }
 
-    let van = layVan(ten);
-    let cumTu = VAN[van];
-
-    let loiChuc = `Xuân về hoa nở ${cumTu[0]},
-Năm mới an vui đến với ${ten}
-Gia đình hạnh phúc ${cumTu[1]},
-Công danh rực rỡ ${cumTu[2]}.`;
-
+    let template = randomTemplate();
+    let loiChuc = template.replace(/{ten}/g, ten);
     document.getElementById("result").innerText = loiChuc;
 }
 
-// Gắn sự kiện cho nút
+// Gắn sự kiện nút
 document.getElementById("btnChuc").addEventListener("click", taoLoiChuc);
-
 </script>
+
 </body>
 </html>
