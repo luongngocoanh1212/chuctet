@@ -1,1 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Chúc Tết theo tên</title>
+<style>
+body {
+  font-family: Arial;
+  text-align: center;
+  margin-top: 80px;
+}
+input {
+  padding: 10px;
+  font-size: 16px;
+}
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+#result {
+  margin-top: 30px;
+  white-space: pre-line;
+  font-size: 18px;
+}
+</style>
+</head>
 
+<body>
+
+<h2>Nhập tên để nhận lời chúc Tết 🎉</h2>
+
+<input id="name" placeholder="Nhập tên..." />
+<button onclick="chucTet()">Tạo lời chúc</button>
+
+<div id="result"></div>
+
+<script>
+function chucTet() {
+  let ten = document.getElementById("name").value;
+  if(!ten) return;
+
+  let bai = 
+`Xuân về hoa nở thắm lung linh,
+Năm mới an vui đến với ${ten}.
+Gia đình hạnh phúc, đời viên mãn,
+Vạn sự hanh thông, phúc thắm xinh.`;
+
+  document.getElementById("result").innerText = bai;
+}
+</script>
+
+</body>
+</html>
