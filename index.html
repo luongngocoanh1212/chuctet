@@ -2,67 +2,52 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Thơ Tết theo tên</title>
+<title>Lời chúc Tết 2026</title>
 
 <style>
-body{font-family:Arial;text-align:center;margin-top:80px}
-input,button{padding:10px;font-size:16px}
-#result{margin-top:30px;white-space:pre-line;font-size:18px}
+body{
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 80px;
+    background-color: #fff8e7;
+    color: #333;
+}
+h2{
+    color: #d72631;
+}
+input,button{
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+#result{
+    margin-top: 30px;
+    white-space: pre-line;
+    font-size: 18px;
+    color: #1b4332;
+    font-weight: bold;
+}
 </style>
 </head>
 
 <body>
 
-<h2>Nhập tên để tạo thơ Tết 🎉</h2>
+<h2>Sở Khoa học và Công nghệ chúc mừng Xuân Bính Ngọ 2026</h2>
 
 <input id="name" placeholder="Nhập tên..." />
-<button onclick="taoTho()">Tạo thơ</button>
+<br>
+<button onclick="taoTho()">Nhận lời chúc</button>
 
 <div id="result"></div>
 
 <script>
-
+// Hàm bỏ dấu tiếng Việt
 function boDau(s){
-return s.normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+    return s.normalize("NFD").replace(/[\u0300-\u036f]/g,"");
 }
 
-const VAN={
-ao:["lung linh","ngọt ngào","dạt dào"],
-inh:["lung linh","yên bình","bình minh"],
-ang:["dịu dàng","an khang","huy hoàng"],
-ai:["miệt mài","lâu dài","tương lai"],
-ieu:["mỹ miều","thuận chiều","sớm chiều"],
-uy:["như ý","phú quý","an nguy"],
-an:["bình an","hân hoan","ngập tràn"],
-am:["ấm êm","êm đềm","dịu mềm"],
-on:["vẹn tròn","sắt son","vuông tròn"]
-};
-
-function layVan(ten){
-ten=boDau(ten.toLowerCase());
-let keys=Object.keys(VAN).sort((a,b)=>b.length-a.length);
-for(let k of keys){
- if(ten.endsWith(k)) return k;
-}
-return "an";
-}
-
-function taoTho(){
-
-let ten=document.getElementById("name").value.trim();
-if(!ten) return;
-
-let van=layVan(ten);
-let tu=VAN[van];
-
-document.getElementById("result").innerText=
-`Xuân về hoa nở ${tu[0]},
-Năm mới an vui đến với ${ten}
-Gia đình hạnh phúc ${tu[1]},
-Công danh rực rỡ ${tu[2]}.`;
-}
-
-</script>
-
-</body>
-</html>
+// Danh sách vần và cụm từ tương ứng
+const VAN = {
+    ao:["ngọt ngào","dạt dào","thắm vào"],
+    inh:["lung linh","yên bình","bình minh"],
+    ang:["dịu dà]()
