@@ -5,20 +5,9 @@
 <title>Thơ Tết theo tên</title>
 
 <style>
-body{
-font-family:Arial;
-text-align:center;
-margin-top:80px
-}
-input,button{
-padding:10px;
-font-size:16px
-}
-#result{
-margin-top:30px;
-white-space:pre-line;
-font-size:18px
-}
+body{font-family:Arial;text-align:center;margin-top:80px}
+input,button{padding:10px;font-size:16px}
+#result{margin-top:30px;white-space:pre-line;font-size:18px}
 </style>
 </head>
 
@@ -33,49 +22,45 @@ font-size:18px
 
 <script>
 
-function boDau(str){
-return str.normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+function boDau(s){
+return s.normalize("NFD").replace(/[\u0300-\u036f]/g,"");
 }
 
-const VAN = {
+const VAN={
 ai:["miệt mài","lâu dài","tương lai"],
 ang:["dịu dàng","an khang","huy hoàng"],
 inh:["lung linh","yên bình","bình minh"],
 ung:["sum vầy","thịnh vượng","vinh chung"],
 ieu:["mỹ miều","thuận chiều","sớm chiều"],
 uy:["như ý","phú quý","an nguy"],
-oa:["nở hoa","thăng hoa","rạng ngòi hoa"],
-on:["vẹn tròn","sắt son","đầy đòn con"],
+oa:["nở hoa","thăng hoa","rạng hoa"],
+on:["vẹn tròn","sắt son","vuông tròn"],
 an:["bình an","hân hoan","ngập tràn"],
-am:["ấm êm","dịu mềm","êm đềm"]
+am:["ấm êm","êm đềm","dịu mềm"]
 };
 
 function layVan(ten){
-
-ten = boDau(ten.toLowerCase());
-
-let keys = Object.keys(VAN).sort((a,b)=>b.length-a.length);
-
+ten=boDau(ten.toLowerCase());
+let keys=Object.keys(VAN).sort((a,b)=>b.length-a.length);
 for(let k of keys){
  if(ten.endsWith(k)) return k;
 }
-
 return "an";
 }
 
 function taoTho(){
 
-let ten = document.getElementById("name").value.trim();
+let ten=document.getElementById("name").value.trim();
 if(!ten) return;
 
-let van = layVan(ten);
-let tu = VAN[van];
+let van=layVan(ten);
+let tu=VAN[van];
 
-document.getElementById("result").innerText =
-`Xuân về rực rỡ ${tu[0]},
-Năm mới an vui đến với ${ten}.
+document.getElementById("result").innerText=
+`Xuân về hoa nở ${tu[0]},
+Năm mới an vui đến với ${ten}
 Gia đình hạnh phúc ${tu[1]},
-Công danh rộng mở ${tu[2]}.`;
+Công danh rực rỡ ${tu[2]}.`;
 }
 
 </script>
